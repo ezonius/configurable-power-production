@@ -1,6 +1,9 @@
-﻿---------------------------------------------------------------------------------------------------
-Version: 1.0.0
-Date: 2024-12-01
-  Changes:
-    - First change
 ---------------------------------------------------------------------------------------------------
+Version: 1.0.0
+Date: 2026-10-01
+  Features:
+    - Initial release: startup settings for per-building power production multipliers for solar panels, accumulators, nuclear reactors, heating towers, heat interfaces, heat exchangers, steam engines, steam turbines, fusion reactors and fusion generators.
+    - Matching per-building recipe cost multipliers (heat pipes get a recipe multiplier only). Recipe costs are never scaled below 1.
+    - Settings are grouped and color-coded in their names: yellow for solar, green for nuclear/heat, orange for steam, blue for fusion.
+---------------------------------------------------------------------------------------------------
+
