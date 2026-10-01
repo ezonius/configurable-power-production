@@ -17,9 +17,9 @@ local groups = {
 local buildings = {
 	{ building = "solar-panel", type = "solar-panel", group = "solar", power = true },
 	{ building = "accumulator", type = "accumulator", group = "solar", power = true },
-	{ building = "nuclear-reactor", type = "reactor", group = "nuclear", power = true },
-	{ building = "heating-tower", type = "reactor", group = "nuclear", power = true },
-	{ building = "heat-pipe", type = "heat-pipe", group = "nuclear", power = true },
+	{ building = "nuclear-reactor", type = "reactor", group = "nuclear", power = true, radius = true },
+	{ building = "heating-tower", type = "reactor", group = "nuclear", power = true, radius = true },
+	{ building = "heat-pipe", type = "heat-pipe", group = "nuclear", power = true, radius = true },
 	{ building = "heat-exchanger", type = "boiler", group = "steam", power = true },
 	{ building = "steam-engine", type = "generator", group = "steam", power = true },
 	{ building = "steam-turbine", type = "generator", group = "steam", power = true },
@@ -65,20 +65,21 @@ for _, entry in ipairs(buildings) do
 		maximum_value = 100,
 		order = order .. "c",
 	}
-end
 
--- Heat pipe gets an extra dedicated heating-radius multiplier (radius and heat
--- transfer are tuned independently; radius is a plain tile count, not power).
-if data.raw["heat-pipe"] and data.raw["heat-pipe"]["heat-pipe"] then
-	settings[#settings + 1] = {
-		type = "double-setting",
-		name = prefix .. "heat-pipe-radius-multiplier",
-		setting_type = "startup",
-		default_value = 1,
-		minimum_value = 0,
-		maximum_value = 100,
-		order = groups.nuclear .. "heat-piped",
-	}
+	-- Heating radius multiplier for entities that radiate heat to their surroundings
+	-- (thaws frozen terrain/entities on Aquilo). Reactors have no vanilla heating radius,
+	-- so any value above 1 enables ambient heating with that radius in tiles.
+	if entry.radius then
+		settings[#settings + 1] = {
+			type = "double-setting",
+			name = name .. "radius-multiplier",
+			setting_type = "startup",
+			default_value = 1,
+			minimum_value = 0,
+			maximum_value = 100,
+			order = order .. "d",
+		}
+	end
 end
 
 -- Reactor neighbour bonus toggles. Defaults match vanilla:

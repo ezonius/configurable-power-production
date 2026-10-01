@@ -117,11 +117,17 @@ for _, entry in ipairs(buildings) do
 				end
 			end
 		end
-		-- Optional extra multiplier (heat pipe heating radius is tuned separately
-		-- from heat transfer; it is a plain tile count, not an energy value).
+		-- Optional heating-radius multiplier. Entities that radiate heat thaw frozen
+		-- terrain/entities around them (e.g. Aquilo). Reactors have no vanilla heating
+		-- radius (default 0, and 0 multiplied stays 0), so a value above 1 enables
+		-- ambient heating with a base radius of 1 tile times the multiplier.
 		local radius = get_multiplier(entry.building, "radius-multiplier")
-		if prototype.heating_radius and radius ~= 1 then
-			prototype.heating_radius = prototype.heating_radius * radius
+		if radius ~= 1 then
+			local base = prototype.heating_radius or 1
+			if base == 0 and radius > 1 then
+				base = 1
+			end
+			prototype.heating_radius = base * radius
 		end
 		entity_names[entry.building] = true
 	end
