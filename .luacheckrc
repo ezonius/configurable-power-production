@@ -6,4 +6,5 @@ globals = {
 	"mods",
 	"settings",
 	"prototypes",
+	"log",
 }

@@ -1,9 +1,10 @@
 {
   "name": "configurable-power-production",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "factorio_version": "2.1",
   "title": "Configurable Power Production",
   "author": "ezonius",
   "description": "Adds startup settings for per-building power production multipliers and recipe cost multipliers: solar panels, accumulators, nuclear and fusion reactors, heating towers, heat interfaces, heat pipes, heat exchangers, steam engines and turbines. Settings are grouped and color-coded (solar/nuclear/steam/fusion).",
   "dependencies": []
 }
+
