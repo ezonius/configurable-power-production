@@ -1,4 +1,9 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.2.0
+Date: 2026-10-14
+  Features:
+    - New "Heating radius updater" shortcut (heating tower icon): toggling it gives a selection tool. Selecting already-placed heating entities (reactors, heat pipes, modded heating buildings) re-places them so they pick up the changed prototype heating radius - placed entities otherwise only read the radius when built. Fuel is preserved.
+---------------------------------------------------------------------------------------------------
 Version: 1.1.0
 Date: 2026-10-01
   Features:
